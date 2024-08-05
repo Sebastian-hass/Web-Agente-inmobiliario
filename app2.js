@@ -90,33 +90,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setInterval(nextSlide, 5000); // Cambia de imagen cada 5 segundos
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    const seguros = document.querySelectorAll('input[name="seguro"]');
-    const ningunoCheckbox = document.getElementById('ninguno');
-
-    seguros.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            const fileInput = document.getElementById(this.id + '_doc');
-            if (fileInput) {
-                fileInput.style.display = this.checked ? 'block' : 'none';
-            }
-
-            // Si se selecciona "Ninguno", desmarca y oculta los demás
-            if (this.id === 'ninguno' && this.checked) {
-                seguros.forEach(function(otherCheckbox) {
-                    if (otherCheckbox !== ningunoCheckbox) {
-                        otherCheckbox.checked = false;
-                        const otherFileInput = document.getElementById(otherCheckbox.id + '_doc');
-                        if (otherFileInput) {
-                            otherFileInput.style.display = 'none';
-                        }
-                    }
-                });
-            } else if (this.checked) {
-                // Si se selecciona cualquier otro, desmarca "Ninguno"
-                ningunoCheckbox.checked = false;
-            }
-        });
-    });
-});
